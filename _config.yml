@@ -1,0 +1,9 @@
+# _config.yml
+title: Lớp 12A5 - THPT Phù Ngọc
+email: your-class-email@example.com
+description: Trang thông báo và tin tức chính thức của Lớp 12A5.
+baseurl: "" # Để trống, vì đây là User/Organization Page
+url: "https://thptphungoc12a5.github.io" 
+theme: minima # Sử dụng theme cơ bản của Jekyll để khởi động nhanh
+plugins:
+  - jekyll-feed
