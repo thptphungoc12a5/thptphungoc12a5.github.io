@@ -1,0 +1,21 @@
+# admin/config.yml
+backend:
+  name: github
+  repo: thptphungoc12a5/thptphungoc12a5.github.io # RẤT QUAN TRỌNG: Tên_Người_Dùng/Tên_Repo
+  branch: main # Hoặc master, tùy thuộc vào nhánh chính của bạn
+  
+media_folder: "assets/uploads" 
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "posts"
+    label: "Bài Đăng Lớp"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" 
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Tiêu đề", name: "title", widget: "string"}
+      - {label: "Tác giả", name: "author", widget: "string"}
+      - {label: "Ngày đăng", name: "date", widget: "datetime"}
+      - {label: "Nội dung", name: "body", widget: "markdown"}
