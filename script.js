@@ -113,6 +113,29 @@
 
         // Khởi chạy slideshow
         document.addEventListener('DOMContentLoaded', () => {
+                    // --- Dark mode init (respect previous choice or system preference) ---
+                    const themeToggleBtn = document.getElementById('dark-mode-toggle');
+                    function applyTheme(theme){
+                        document.documentElement.setAttribute('data-theme', theme);
+                        if(themeToggleBtn){
+                            themeToggleBtn.innerHTML = theme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-regular fa-moon"></i>';
+                        }
+                    }
+                    try{
+                        const saved = localStorage.getItem('site-theme');
+                        if(saved) applyTheme(saved);
+                        else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+                        else applyTheme('light');
+                    }catch(e){
+                        applyTheme(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                    }
+                    if(themeToggleBtn){
+                        themeToggleBtn.addEventListener('click', () => {
+                            const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                            applyTheme(next);
+                            try{ localStorage.setItem('site-theme', next); }catch(e){}
+                        });
+                    }
             showSlides(slideIndex);
             resetInterval();
 
