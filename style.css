@@ -1,5 +1,40 @@
+        :root{
+            --bg: #f5f5f5;
+            --surface: #ffffff;
+            --text: #333333;
+            --muted: #666666;
+            --accent: #1dc071;
+            --accent-strong: #17a05e;
+            --card-border: #e0e0e0;
+            --sidebar-bg: #f8f9fa;
+            --footer-bg: #f8f9fa;
+            --shadow: rgba(0,0,0,0.1);
+            --scroll-track: #f0f2f5;
+            --scroll-thumb: #cfcfcf;
+            --scroll-thumb-hover: #bdbdbd;
+        }
+
+        [data-theme="dark"]{
+            --bg: #0f1722;
+            --surface: #0b1320;
+            --text: #e6eef7;
+            --muted: #bfc9d6;
+            --accent: #29e08a;
+            --accent-strong: #1cc06d;
+            --card-border: rgba(255,255,255,0.06);
+            --sidebar-bg: #07101a;
+            --footer-bg: #07101a;
+            --shadow: rgba(0,0,0,0.6);
+            --scroll-track: rgba(255,255,255,0.02);
+            --scroll-thumb: rgba(255,255,255,0.10);
+            --scroll-thumb-hover: rgba(255,255,255,0.16);
+        }
+
         body {
             margin: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
 
         .page {
@@ -15,8 +50,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: var(--surface);
+            box-shadow: 0 2px 4px var(--shadow);
             /* Thêm bóng đổ nhẹ */
             z-index: 1000;
             /* Đảm bảo header luôn ở trên cùng */
@@ -26,6 +61,7 @@
 
         main {
             /* padding-top sẽ được đặt tự động bằng JavaScript */
+            transition: padding-top 0.2s ease;
         }
 
         .fui-navbar-basic {
@@ -42,7 +78,7 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: #333;
+            color: var(--text);
         }
 
         .fui-navbar-basic .logo img {
@@ -77,14 +113,14 @@
         }
 
         .fui-navbar-basic .nav-link:hover {
-            color: #1dc071;
+            color: var(--accent);
         }
 
         /* Reset cho các thẻ a và li bên trong nav */
         .fui-navbar-basic .nav-link {
             text-decoration: none;
             /* Bỏ gạch chân mặc định */
-            color: #333;
+            color: var(--text);
             /* Đặt màu chữ mặc định */
         }
 
@@ -201,7 +237,7 @@
         }
 
         div.page-2 {
-            background-color: #f0f2f5;
+            background-color: var(--bg);
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
@@ -211,20 +247,20 @@
 
         .page-2 h2 {
             font-size: 36px;
-            color: #333;
+            color: var(--text);
             margin-bottom: 30px;
         }
 
         /* Page 3 - Album */
         div.page-3 {
-            background-color: #fff;
+            background-color: var(--surface);
             padding: 60px 20px;
             text-align: center;
         }
 
         div.page-3 h2 {
             font-size: 36px;
-            color: #333;
+            color: var(--text);
             margin-bottom: 40px;
         }
 
@@ -293,7 +329,7 @@
         /* End reset css */
         /* ********************** Table wrap ********************** */
         .table-wrap {
-            color: #333;
+            color: var(--text);
             font-size: 14px;
         }
 
@@ -312,7 +348,7 @@
             /* Giữ cố định tiêu đề */
             top: 0;
             /* Vị trí ở trên cùng */
-            background-color: #f0f2f5;
+            background-color: var(--surface);
             /* Thêm nền để không bị trong suốt */
             z-index: 1;
             /* Đảm bảo tiêu đề luôn ở trên */
@@ -352,6 +388,68 @@
             background-color: rgba(0, 0, 0, 0.9);
         }
 
+        /* Footer styles (theme-aware) */
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--muted);
+            padding: 50px 40px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .footer-section h4 { color: var(--text); }
+        .footer-logo { color: var(--text); }
+        .footer-links a { color: var(--muted); }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-social-list a { color: var(--text); }
+        .footer-bottom { border-top: 1px solid var(--card-border); color: var(--muted); }
+
+        /* Dark mode toggle button styling */
+        .dark-toggle{ background:none; border:0; cursor:pointer; color:var(--text); font-size:18px; padding:6px 8px; border-radius:6px; }
+        .dark-toggle:focus{ outline:2px solid rgba(29,192,113,0.18); }
+
+        /* Scrollbar styling (WebKit) */
+        *::-webkit-scrollbar { width: 12px; height: 12px; }
+        *::-webkit-scrollbar-track { background: var(--scroll-track); }
+        *::-webkit-scrollbar-thumb { background-color: var(--scroll-thumb); border-radius: 10px; border: 3px solid transparent; background-clip: padding-box; }
+        *::-webkit-scrollbar-thumb:hover { background-color: var(--scroll-thumb-hover); }
+
+        /* Firefox scrollbar */
+        html { scrollbar-width: thin; scrollbar-color: var(--scroll-thumb) var(--scroll-track); }
+
+        /* Ensure scrollable containers use the same scrollbar styling (Firefox + WebKit) */
+        .fui-table-ui-basic-linh,
+        .lightbox-thumbnails,
+        .album-grid,
+        .page-2,
+        .page-3 {
+            scrollbar-width: thin;
+            scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+        }
+
+        .fui-table-ui-basic-linh::-webkit-scrollbar,
+        .lightbox-thumbnails::-webkit-scrollbar,
+        .album-grid::-webkit-scrollbar,
+        .page-2::-webkit-scrollbar,
+        .page-3::-webkit-scrollbar { width: 12px; height: 12px; }
+
+        .fui-table-ui-basic-linh::-webkit-scrollbar-track,
+        .lightbox-thumbnails::-webkit-scrollbar-track,
+        .album-grid::-webkit-scrollbar-track,
+        .page-2::-webkit-scrollbar-track,
+        .page-3::-webkit-scrollbar-track { background: var(--scroll-track); }
+
+        .fui-table-ui-basic-linh::-webkit-scrollbar-thumb,
+        .lightbox-thumbnails::-webkit-scrollbar-thumb,
+        .album-grid::-webkit-scrollbar-thumb,
+        .page-2::-webkit-scrollbar-thumb,
+        .page-3::-webkit-scrollbar-thumb { background-color: var(--scroll-thumb); border-radius: 10px; border: 3px solid transparent; background-clip: padding-box; }
+
+        .fui-table-ui-basic-linh::-webkit-scrollbar-thumb:hover,
+        .lightbox-thumbnails::-webkit-scrollbar-thumb:hover,
+        .album-grid::-webkit-scrollbar-thumb:hover,
+        .page-2::-webkit-scrollbar-thumb:hover,
+        .page-3::-webkit-scrollbar-thumb:hover { background-color: var(--scroll-thumb-hover); }
+
         .lightbox-slider-wrapper {
             width: 100%;
             height: calc(100% - 150px);
@@ -364,6 +462,7 @@
             display: flex;
             height: 100%;
             transition: transform 0.5s ease-in-out;
+            z-index: 2000;
         }
 
         .lightbox-slide {
@@ -417,14 +516,14 @@
         .thumbnail-img:hover,
         .thumbnail-img.active {
             opacity: 1;
-            border-color: white;
+            border-color: var(--accent);
         }
 
         .lightbox-close {
             position: absolute;
             top: 15px;
             right: 35px;
-            color: #f1f1f1;
+            color: var(--text);
             font-size: 40px;
             font-weight: bold;
             transition: 0.3s;
@@ -433,7 +532,7 @@
 
         .lightbox-close:hover,
         .lightbox-close:focus {
-            color: #bbb;
+            color: var(--muted);
             text-decoration: none;
         }
 
@@ -443,9 +542,12 @@
             position: absolute;
             top: 50%;
             width: auto;
-            padding: 16px;
+            padding: 20px;
             margin-top: -50px;
-            color: white;
+            color: var(--text);
+            z-index: 3000;
+            pointer-events: auto;
+            background: rgba(0,0,0,0.0);
             font-weight: bold;
             font-size: 20px;
             transition: 0.3s ease;
@@ -464,7 +566,7 @@
 
         .lightbox-prev:hover,
         .lightbox-next:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.08);
         }
 
         /* ********************** End table common ********************** */
@@ -477,7 +579,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: #1dc071;
+            background-color: var(--accent);
             border: none;
             font-size: 24px;
             cursor: pointer;
@@ -497,10 +599,10 @@
 
         /* footer */
         footer {
-            background-color: #f8f9fa;
-            color: #6c757d;
+            background-color: var(--footer-bg);
+            color: var(--muted);
             padding: 50px 40px;
-            border-top: 1px solid #e7e7e7;
+            border-top: 1px solid var(--card-border);
         }
 
         .footer-container {
@@ -516,7 +618,7 @@
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 16px;
-            color: #343a40;
+            color: var(--text);
         }
 
         .footer-logo {
@@ -526,7 +628,7 @@
             gap: 12px;
             font-size: 22px;
             font-weight: 600;
-            color: #343a40;
+            color: var(--text);
             text-decoration: none;
             margin-bottom: 16px;
         }
@@ -551,14 +653,14 @@
         }
 
         .footer-links a {
-            color: #6c757d;
+            color: var(--muted);
             text-decoration: none;
             font-size: 14px;
             transition: color 0.2s;
         }
 
         .footer-links a:hover {
-            color: #1dc071;
+            color: var(--accent);
         }
 
         .footer-social-list {
@@ -571,13 +673,13 @@
         }
 
         .footer-social-list a {
-            color: #343a40;
+            color: var(--text);
             font-size: 20px;
             transition: color 0.2s;
         }
 
         .footer-social-list a:hover {
-            color: #1dc071;
+            color: var(--accent);
         }
 
         .footer-bottom {
@@ -585,9 +687,10 @@
             /* Trải dài toàn bộ chiều rộng grid */
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #e7e7e7;
+            border-top: 1px solid var(--card-border);
             text-align: center;
             font-size: 14px;
+            color: var(--muted);
         }
 
         @media (max-width: 768px) {
@@ -647,35 +750,35 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #fff;
+            background-color: var(--surface);
             padding: 30px 40px;
             border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
             z-index: 2100;
             /* Cao hơn cả lightbox */
             text-align: center;
-            border-top: 5px solid #1dc071;
+            border-top: 5px solid var(--accent);
             max-width: 500px;
         }
 
         .sinhnhat p {
             font-size: 22px;
-            color: #333;
+            color: var(--text);
             margin: 0 0 10px 0;
             line-height: 1.5;
         }
 
         .sinhnhat p span {
             font-weight: bold;
-            color: #1dc071;
+            color: var(--accent);
         }
 
         .sinhnhat button {
             margin-top: 20px;
             padding: 10px 25px;
             border: none;
-            background-color: #1dc071;
-            color: white;
+            background-color: var(--accent);
+            color: var(--surface);
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
